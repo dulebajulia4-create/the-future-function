@@ -45,10 +45,27 @@ async function analyzeProblem() {
     data.message ||
     "The server responded, but no answer was returned.";
 
-responseArea.innerHTML = DOMPurify.sanitize(
-    marked.parse(answer)
+const mathExpressions = [];
+
+const protectedAnswer = answer.replace(
+    /\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g,
+    (equation) => {
+        const index = mathExpressions.length;
+        mathExpressions.push(equation);
+        return `MATHPLACEHOLDER${index}END`;
+    }
 );
 
+let formattedAnswer = DOMPurify.sanitize(
+    marked.parse(protectedAnswer)
+);
+
+formattedAnswer = formattedAnswer.replace(
+    /MATHPLACEHOLDER(\d+)END/g,
+    (_, index) => mathExpressions[Number(index)]
+);
+
+responseArea.innerHTML = formattedAnswer;
 if (window.MathJax) {
     MathJax.typesetPromise([responseArea]);
 }
