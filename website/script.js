@@ -39,11 +39,19 @@ async function analyzeProblem() {
         }
 
         // Display the AI response
-        responseArea.textContent =
-            data.answer ||
-            data.response ||
-            data.message ||
-            "The server responded, but no answer was returned.";
+       const answer =
+    data.answer ||
+    data.response ||
+    data.message ||
+    "The server responded, but no answer was returned.";
+
+responseArea.innerHTML = DOMPurify.sanitize(
+    marked.parse(answer)
+);
+
+if (window.MathJax) {
+    MathJax.typesetPromise([responseArea]);
+}
 
     } catch (error) {
         console.error("Error:", error);
