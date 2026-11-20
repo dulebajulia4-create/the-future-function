@@ -1,4 +1,33 @@
- <button id="analyzeButton" onclick="analyzeProblem()">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future Function</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <main class="container">
+        <header>
+            <h1>The Future Function</h1>
+            <p class="subtitle">
+                A different way to think about life's uncertainties.
+            </p>
+        </header>
+
+        <section class="input-section">
+            <label for="problem">
+                What decision, uncertainty, or problem are you facing?
+            </label>
+
+            <textarea
+                id="problem"
+                placeholder="I'm trying to decide whether..."
+                rows="5"
+            ></textarea>
+
+            <button id="analyzeButton" onclick="analyzeProblem()">
                 Explore the mathematics
             </button>
         </section>
@@ -15,6 +44,6 @@
         </footer>
     </main>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
