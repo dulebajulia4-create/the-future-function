@@ -1,18 +1,18 @@
-  problem: problem
-            })
+ },
+            body: JSON.stringify({ problem: problem })
         });
 
-        const data = await response.json();
+        const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || "Something went wrong.");
+            throw new Error(result.error || "Request failed.");
         }
 
-        responseArea.textContent = data.answer;
+        responseArea.textContent = result.answer || result.response || JSON.stringify(result);
 
     } catch (error) {
-        responseArea.textContent =
-            "Something went wrong. Please try again.\n\n" + error.message;
+        responseArea.textContent = "Error: " + error.message;
+        console.error("Future Function error:", error);
 
     } finally {
         button.disabled = false;
