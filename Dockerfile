@@ -12,6 +12,6 @@ WORKDIR /app
 COPY main.cpp .
 COPY website ./website
 
-RUN g++ -std=c++17 main.cpp -o futurefunction -lcurl -pthread
+RUN g++ -std=c++17 main.cpp -o futurefunction -lcurl -pthread -lcpp-httplib
 
 CMD ["./futurefunction"]
