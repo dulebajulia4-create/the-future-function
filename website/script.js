@@ -8,7 +8,7 @@
             throw new Error(data.error || "Something went wrong.");
         }
 
-        responseArea.textContent = data.response;
+        responseArea.textContent = data.answer;
 
     } catch (error) {
         responseArea.textContent =
